@@ -1,0 +1,21 @@
+{
+  "name": "requestProfile",
+  "version": "1.0",
+  "permissions": [
+    "experimental",
+    "tabs"
+  ],
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "file://*/*"],
+      "js": ["lib/content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["lib/background.js"]
+  },
+  "icons": {
+    "16": "icon.png"
+  }
+}

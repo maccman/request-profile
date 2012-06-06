@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  padding: 0 15px;
+  color: #303942;
+  font-family: 'Lucida Grande', sans-serif;
+  font-size: 75%;
+}
+
+button {
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  background-image: -webkit-linear-gradient(#F0F0F0, #F0F0F0 38%, #E0E0E0);
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  text-shadow: 0 1px 0 #F0F0F0;
+  text-align: center;
+
+  padding: 3px 10px;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+button:hover {
+  background-image: -webkit-linear-gradient(#F0F0F0, #F0F0F0 38%, #E0E0E0);
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  color: black;
+}
+
+button:focus {
+  -webkit-transition: border-color 200ms;
+  border-color: #4D90FE;
+  outline: none;
+}
+
+button:active {
+  background-image: -webkit-linear-gradient(#E7E7E7, #E7E7E7 38%, #D7D7D7);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+input {
+  box-sizing: border-box;
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(51, 153, 204, 0.5);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.20), 0 1px 5px 0 rgba(51, 153, 204, 0.4);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.20), 0 1px 5px 0 rgba(51, 153, 204, 0.4);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+label span:after {
+  content: ":";
+}
+
+label span {
+  display: block;
+}
+
+.hbox {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  -webkit-box-pack: start;
+}
+
+section {
+  padding-right: 10px;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+h2 {
+  margin: 10px 0 10px 0;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+h3 {
+  margin: 0 0 8px 0;
+}

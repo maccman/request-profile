@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings - requestProfile</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css">
+</head>
+<body>
+  <form id="settings">
+    <header>
+      <h2>Settings</h2>
+    </header>
+
+    <div class="hbox">
+
+      <section>
+        <h3>Info</h3>
+
+        <label>
+          <span>First name</span>
+          <input type="text" name="firstName" autofocus>
+        </label>
+
+        <label>
+          <span>Last name</span>
+          <input type="text" name="lastName">
+        </label>
+
+        <label>
+          <span>Email</span>
+          <input type="email" name="email">
+        </label>
+
+        <label>
+          <span>Phone</span>
+          <input type="text" name="phone">
+        </label>
+      </section>
+
+      <section>
+        <h3>Address</h3>
+
+        <label>
+          <span>Address Line 1</span>
+          <input type="text" name="addressOne">
+        </label>
+
+        <label>
+          <span>Address Line 2</span>
+          <input type="text" name="addressTwo">
+        </label>
+
+        <label>
+          <span>City/Town</span>
+          <input type="text" name="addressCity">
+        </label>
+
+        <label>
+          <span>State</span>
+          <input type="text" name="addressState">
+        </label>
+
+        <label>
+          <span>ZIP code</span>
+          <input type="text" name="addressZip">
+        </label>
+
+        <label>
+          <span>Country</span>
+          <input type="text" name="addressCountry">
+        </label>
+      </section>
+
+      <section>
+        <h3>Credit Card</h3>
+
+        <label>
+          <span>Name on card</span>
+          <input type="text" name="cardName">
+        </label>
+
+        <label>
+          <span>Card number</span>
+          <input type="text" name="cardNumber">
+        </label>
+
+        <label>
+          <span>Expiration date</span>
+          <input type="text" name="cardExpire">
+        </label>
+      </section>
+
+    </div>
+  </form>
+
+  <script type="text/javascript" charset="utf-8">
+    var form   = document.getElementById('settings');
+    var inputs = document.getElementsByTagName('input');
+
+    inputs = Array.prototype.slice.call(inputs, 0);
+
+    var load = function () {
+      inputs.forEach(function (input) {
+        input.value = localStorage[input.name] || '';
+      })
+    };
+
+    var save = function () {
+      inputs.forEach(function (input) {
+        localStorage[input.name] = input.value;
+      });
+    }
+
+    load();
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      save();
+    }, false);
+
+    form.addEventListener('change', save, false);
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>requestProfile</title>
+
+  <script src="client/request_profile.js"></script>
+
+  <style type="text/css" media="screen">
+    textarea {
+      display: block;
+      margin: 10px 0;
+      height: 100px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <button id="buy">Buy a product!</button>
+
+  <textarea id="result" placeholder="Result..."></textarea>
+
+  <script>
+    var buy = document.getElementById('buy');
+
+    buy.addEventListener('click', function () {
+      var error = function () {
+        result.value = 'Error!';
+      };
+
+      var success = function (profile) {
+        result.value = JSON.stringify(profile);
+      };
+
+      if (typeof navigator.requestProfile !== 'function') {
+        alert('requestProfile is not supported in your browser. Please install the extension.')
+        return;
+      }
+
+      // Request data from the browser
+      navigator.requestProfile(
+        ['firstName', 'lastName', 'email', 'cardNumber'],
+        success, error
+      );
+    }, false);
+  </script>
+</body>
+</html>

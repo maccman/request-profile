@@ -1,0 +1,111 @@
+<style type="text/css" media="screen">
+  body, html {
+    padding: 0;
+    margin: 0;
+  }
+
+  article {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 30px 0 10px;
+    border-top: 1px solid #7A7A7A;
+    border-bottom: 1px solid #7A7A7A;
+  }
+
+  a {
+
+  }
+
+  footer {
+    float: right;
+  }
+
+  button {
+    font-size: 13px;
+    background: -webkit-linear-gradient(#EDEDED, #E4E4E4);
+    text-shadow: 0 1px #FFF;
+    border: 1px solid #B3B3B3;
+    border-radius: 3px;
+    color: #000;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  button:active {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<article>
+  <span id="domain">-</span> wants to access your <span id="types">-</span>. <a id="about" href="about.html" target="_blank">Learn more</a>
+
+  <footer>
+    <button id="deny">Deny</button>
+    <button id="allow">Allow</button>
+  </footer>
+</article>
+
+<script>
+  // Remove non-word chars
+  var strip = function (str) {
+    return str.replace(/\W/, '');
+  };
+
+  // Capitalize first character
+  var capitalize = function (str) {
+    return str.charAt(0).toUpperCase() + str.substring(1);
+  };
+
+  // Split up camel cased words
+  var titlize = function (str) {
+    return str.replace(/([A-Z])/g, ' $1');
+  };
+
+  // Convert array to sentence
+  var sentence = function (array) {
+    if (array.length <= 1) return array[0];
+    var last = array.pop();
+    return array.join(', ') + ' and ' + last;
+  };
+
+  window.requestProfile = function (request, callback) {
+    // Format bar
+
+    var $domain = document.getElementById('domain');
+    $domain.innerText = request.domain || 'This domain';
+
+    var $types = document.getElementById('types');
+    var types  = request.types;
+
+    // Format fields properly
+    types = types.map(function(type){
+      return titlize(capitalize(strip(type)));
+    });
+
+    // Bold fields that mention credit cards
+    types = types.map(function(type){
+      if (/card/i.test(type)) {
+        type = '<b>' + type + '</b>';
+      }
+      return type;
+    });
+
+    $types.innerHTML = sentence(types);
+
+    // Add event listeners
+
+    var $allow = document.getElementById('allow');
+    $allow.addEventListener('click', function () { callback(true); }, false);
+
+    var $deny = document.getElementById('deny');
+    $deny.addEventListener('click', function () { callback(false); }, false);
+
+    var $about = document.getElementById('about');
+    $about.addEventListener('click', function (e) {
+      e.preventDefault();
+      chrome.windows.create({
+        url: 'about.html', type: 'popup',
+        width: 400, height: 400
+      });
+    }, false);
+  };
+</script>
