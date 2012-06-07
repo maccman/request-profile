@@ -16,14 +16,18 @@ You can specify data to be used in the extension's options:
 
 ##Example
 
-    var error = function(type){
-      console.log('You lose!');
-    };
+    var error = function(type){ /* ... */ };
 
     var success = function(profile){
-      Stripe.createToken(profile.card, function(){
-        console.log('You payed!');
+      Stripe.createToken({
+        cardNumber: profile.cardNumber
       });
     };
 
-    navigator.requestProfile(['firstName', 'lastName', 'card'], success, error);
+    navigator.requestProfile(['firstName', 'lastName', 'cardNumber'], success, error);
+
+##Installing the extension
+
+1. `git clone git://github.com/maccman/request-profile.git`
+1. Go to Chrome -> Extensions, enter developer mode and **Load unpacked extension**.
+1. For an example, open `index.html`.
